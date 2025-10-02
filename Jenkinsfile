@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'main', url:'https://github.com/mehiis/javafx_docker_sep1_week7'
+                git branch:'master', url:'https://github.com/mehiis/javafx_docker_sep1_week7'
             }
         }
         stage('Create .env file') {
