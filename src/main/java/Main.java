@@ -12,6 +12,16 @@ public class Main extends Application {
         Button convertButton = new Button("Convert");
         Label resultLabel = new Label();
 
+        Label ktcLabel = new Label("Enter Kelvin:");
+        TextField ktcInput = new TextField();
+        Button ktcConvertButton = new Button("Convert");
+        Label ktcResultLabel = new Label();
+
+        Label ctoklabel = new Label("Enter celsius:");
+        TextField ctokInput = new TextField();
+        Button ctokconvertButton = new Button("Convert");
+        Label ctokresultLabel = new Label();
+
         convertButton.setOnAction(e -> {
             try {
                 double celsius = Double.parseDouble(celsiusInput.getText());
@@ -22,9 +32,34 @@ public class Main extends Application {
             }
         });
 
-        VBox root = new VBox(10, label, celsiusInput, convertButton, resultLabel);
+        ktcConvertButton.setOnAction(e -> {
+            try {
+                double kelvin = Double.parseDouble(ktcInput.getText());
+                double celsius = kelvin - 273.15;
+                ktcResultLabel.setText("Celsius: " + celsius);
+            } catch (NumberFormatException ex) {
+                ktcResultLabel.setText("Invalid input!");
+            }
+        });
+
+        ctokconvertButton.setOnAction(e -> {
+            try {
+                double celsius = Double.parseDouble(ctokInput.getText());
+                double kelvin = celsius + 273.15;
+                ctokresultLabel.setText("Kelvin: " + kelvin);
+            } catch (NumberFormatException ex) {
+                ctokresultLabel.setText("Invalid input!");
+            }
+        });
+
+        VBox root = new VBox();
+        root.getChildren().addAll(label, celsiusInput, convertButton, resultLabel,
+                ktcLabel, ktcInput, ktcConvertButton, ktcResultLabel,
+                ctoklabel, ctokInput, ctokconvertButton, ctokresultLabel);
         Scene scene = new Scene(root, 300, 200);
-        stage.setTitle("Celsius to Fahrenheit");
+        stage.setTitle("Temperature converter");
+        stage.setWidth(500);
+        stage.setHeight(500);
         stage.setScene(scene);
         stage.show();
     }
